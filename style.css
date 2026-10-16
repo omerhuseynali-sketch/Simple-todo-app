@@ -1,0 +1,288 @@
+:root{
+    --bg: #0b0d11;
+    --surface: #14171f;
+    --surface-hover: #1c212c;
+    --border: #242936;
+    --text: #e2e8f0;
+    --text-muted: #718096;
+    --accent: #5e81ac;
+    --success: #a3be8c;
+    --danger: #bf616a;
+    --radius: 8px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,sans-serif;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.35;
+    padding: 16px;
+    min-height: 100vh;
+}
+.main-header h1{
+    font-size: 1.25rem;
+    font-weight: 566;
+}
+.dashboard-grid{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.card-header h2{
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+.timer-card{grid-column: span 4;}
+.habits-card{grid-column: span 8;}
+.kanban-card{grid-column: span 12;}
+
+@media(max-width: 900px){
+    .timer-card {grid-column: span 12;}
+    .habits-card {grid-column: span 12;}
+}
+@media(max-width: 600px){
+    .flex-column-mobile{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.inline-form{
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    max-width: 260px;
+}
+input[type="text"]{
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    flex: 1;
+    min-width: 0;
+}
+input[type="text"]:focus{
+    outline: none;
+    border-color: var(--accent);
+}
+.btn{
+    font-family: var(--font);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+.btn:hover{
+    opacity: 0.9;
+}
+.btn-primary{
+    background: var(--accent);
+    color: #fff;
+}
+.btn-secondary{
+    background: var(--border);
+    color: var(--text);
+}
+.btn-sm{
+    font-size: 0.75rem;
+    padding: 4px 8px;
+}
+.timer-modes{
+    display: flex;
+    background: var(--bg);
+    padding: 2px;
+    border-radius: 4px;
+}
+.btn-mode{
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.btn-mode.active{
+    background: var(--border);
+    color: var(--text);
+}
+.timer-display-wrapper{
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: auto;
+}
+.progress-ring{
+    transform: rotate(-90deg);
+}
+.progress-ring__circle{
+    transition: stroke-dashoffset 0.1s linear;
+}
+.timer-time{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+.timer-controls{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+.table-responsive{
+    overflow-x: auto;
+    width: 100%;
+}
+.habits-table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.85rem;
+}
+.habits-table th{
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: center;
+}
+.habits-table th:first-child, .habits-table td:first-child{
+    text-align: left;
+    padding-left: 0;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.habit-cell{
+    text-align: center;
+}
+.habit-check-btn{
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s;
+}
+.habit-check-btn.checked{
+    background: var(--success);
+    border-color: var(--success);
+}
+
+.habit-check-btn.today{
+    border-color: var(--accent);
+}
+.btn-delete{
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.btn-delete:hover{
+    color: var(--danger);
+}
+.kanban-columns{
+    display: grid;
+    grid-template-columns: repeat(3. 1fr);
+    gap: 12px;
+    margin-top: 8px;
+}
+@media(max-width: 768px){
+    .kanban-columns{
+        grid-template-columns: 1fr;
+    }
+}
+.kanban-col{
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+}
+.col-title{
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+}
+.badge{
+    background: var(--border);
+    color: var(--text);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+.task-list{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6.5px;
+    min-height: 150px;
+}
+.task-item{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 10px;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.85rem;
+}
+.task-item:active{
+    cursor: grabbing;
+}
+.task-item.dragging{
+    opacity: 0.5;
+}
+.task-actions{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.btn-arrow{
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 2px;
+}
+.btn-arrow:hover{
+    color: var(--accent);
+}

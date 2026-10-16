@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Focus Board </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header class="main-header">
+            <div class="logo-area">
+                <h1>Focus board  </h1>
+            </div>
+            <button id="reset-all-btn" class="btn btn-secondary btn-sm">Clear All data</button>
+        </header>
+
+       <main class="dashboard-grid">
+        <section class="card timer-card">
+            <div class="card-header">
+                <h2>Timer</h2>
+                <div class="timer-modes">
+                    <button id="mode-focus" class="btn-mode active" data-mode="focus">Focus</button>
+                    <button id="mode-break" class="btn-mode" data-mode="break">Break</button>        
+                </div>
+            </div>
+            <div class="timer-display-wrapper">
+                <svg class="progress-ring" width="160" height="160">
+                    <circle class="progress-ring__bg" stroke="#1e222b" stroke-width="6" fill="transparent" r="72" cx="80" cy="80" />
+                    <circle class="progress-ring__circle" stroke="var(--accent)" stroke-width="6" fill="transparent" r="72" cx="80" cy="80"/>
+                </svg>
+                <div id="timer-time" class="timer-time">25:00</div>
+            </div>
+            <div class="timer-controls">
+                <button id="timer-start" class="btn btn-primary">Start</button>
+                <button id="timer-reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </section>
+
+        <!-- HABIT TRACKER SESSION-->
+
+        <section class="card habits-card">
+            <div class="card-header">
+                <h2>Habits</h2>
+                <form id="habit-form" class="inline-form">
+                    <input type="text" id="habit-input" placeholder="New habit..." required maxlength="21">
+                    <button type="submit" class="btn btn-primary">+</button>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="habits-table">
+                    <thead>
+                        <tr>
+                            <th>Habit</th>
+                            <th title="Monday">M</th>
+                            <th title="Tuesday">T</th>
+                            <th title="Wednesday">W</th>
+                            <th title="Thursday">T</th>
+                            <th title="Friday">F</th>
+                            <th title="Saturday">S</th>
+                            <th title="Sunday">S</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="habits-body">
+                        <!-- Dynamic Injection-->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+       <!--KANBAN BOARD SECTION-->
+        <section class="card kanban-card">
+            <div class="card-header flex-column-mobile">
+                <h3>Kanban Board</h3>
+                <form id="kanban-form" class="inline-form">
+                    <input type="text" id="task-input" placeholder="Add new task..." required>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+
+            <div class="kanban-columns">
+                 <!-- To Do (Bura yeni əlavə edildi) -->
+                 <div class="kanban-col" data-status="todo">
+                    <div class="col-title">To Do <span class="badge" id="count-todo">0</span></div>
+                    <div class="task-list" id="list-todo"></div>
+                 </div>
+
+                 <!-- In Progress -->
+                 <div class="kanban-col" data-status="inprogress">
+                    <div class="col-title">In Progress <span class="badge" id="count-inprogress">0</span> </div>
+                    <div class="task-list" id="list-inprogress"></div>
+                 </div>
+
+                 <!-- Done -->
+                  <div class="kanban-col" data-status="done">
+                    <div class="col-title">Done <span class="badge" id="count-done">0</span></div>
+                    <div class="task-list" id="list-done"></div>
+                  </div>
+            </div>
+        </section>
+       </main>
+       
+       <script src="app.js"></script>
+    </body>
+</html>
